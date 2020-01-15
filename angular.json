@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Monopoly-Assistant": {
+    "monopoly": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Monopoly-Assistant",
+            "outputPath": "dist/monopoly",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -54,11 +54,6 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
                 }
               ]
             }
@@ -67,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Monopoly-Assistant:build"
+            "browserTarget": "monopoly:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Monopoly-Assistant:build:production"
+              "browserTarget": "monopoly:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Monopoly-Assistant:build"
+            "browserTarget": "monopoly:build"
           }
         },
         "test": {
@@ -115,15 +110,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Monopoly-Assistant:serve"
+            "devServerTarget": "monopoly:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Monopoly-Assistant:serve:production"
+              "devServerTarget": "monopoly:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "Monopoly-Assistant"
+  "defaultProject": "monopoly"
 }

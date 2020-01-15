@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Monopoly-Assistant app is running!');
+    expect(page.getTitleText()).toEqual('Welcome to monopoly!');
   });
 
   afterEach(async () => {
