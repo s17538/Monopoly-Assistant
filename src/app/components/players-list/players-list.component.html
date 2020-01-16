@@ -1,0 +1,5 @@
+<ul>
+    <app-players-item 
+        *ngFor="let player of ms.players; let i=index"  [player]="player"  [nr]="i" (playerRemoved)="removePlayer($event)"
+    ></app-players-item>
+</ul>
