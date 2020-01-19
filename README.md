@@ -25,7 +25,9 @@
 * implementacja planszy
 * rozgrywka prowadzona w formacie hot seat
 * możliwość deklaracji ilości graczy oraz kolorów ich pionków przed rozpoczęciem rozgrywki
-
+* logika odpowiadająca za ruch graczy po planszy oraz możliwość wykupienia danych pól
+* podsumowanie gry po ukończeniu rozgrywki tzw. leaderboard
+* automatyczne pobieranie podatku od gracza, który stanie na polu innego gracza
 
 ## Instalacja gry:
 * grę należy sklonować z GitHuba, następnie wykonać komendę `npm install` oraz `ng serve` w cmd.exe , czyli interpreterze poleceń Windows.
