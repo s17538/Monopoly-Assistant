@@ -1,0 +1,21 @@
+.log-window {
+  margin: auto;
+  width: 389px;
+  height: 100vh;
+  div {
+    width: 100%;
+    &:first-child {
+      height: 30%;
+    }
+    &:last-child {
+      height: 70%;
+    }
+    ul {
+      list-style-type: disc;
+      padding-inline-start: 30px;
+      color: crimson !important;
+      height: 250px;
+      overflow-y: scroll;
+    }
+  }
+}

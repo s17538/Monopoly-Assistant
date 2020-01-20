@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import Field from 'src/app/models/Field';
+import Player from 'src/app/models/Player';
+import { MonopolyService } from 'src/app/services/monopoly.service';
 
 @Component({
   selector: 'app-field',
@@ -7,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FieldComponent implements OnInit {
 
-  constructor() { }
+  @Input() field: Field;
+  @Input() players: Array<Player>
+
+  constructor(private ms: MonopolyService) { }
 
   ngOnInit() {
   }

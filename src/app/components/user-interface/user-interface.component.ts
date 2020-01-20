@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MonopolyService } from 'src/app/services/monopoly.service';
-import Field from 'src/app/models/Field';
 
 @Component({
   selector: 'app-user-interface',
@@ -8,11 +7,18 @@ import Field from 'src/app/models/Field';
   styleUrls: ['./user-interface.component.scss']
 })
 export class UserInterfaceComponent implements OnInit {
+
+  @Output() boardRotated = new EventEmitter<string>();
   
   constructor(private ms: MonopolyService) { }
 
   movePlayer() {
     this.ms.movePlayer();
+    document.getElementById(this.ms.active.name).scrollIntoView({behavior: "smooth", inline: "start"})
+  }
+
+  rotate(direction: string){
+    this.boardRotated.emit(direction);
   }
 
   ngOnInit() {

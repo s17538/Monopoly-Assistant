@@ -1,0 +1,144 @@
+@keyframes pawnPulse {
+    0% {
+        transform: scale(1.0);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1.0);
+    }
+}
+*{
+    box-sizing: border-box;
+}
+.field {
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+
+    div:not(.field-text) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        background-color: gray;
+        border-bottom: 2px solid black;
+        color: white;
+    }
+
+    .field-text {
+
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+
+        ul {
+
+            display: flex;
+            padding: 0;
+            flex-wrap: wrap;
+
+            li {
+                width: 40px;
+                height: 40px;
+                background: lightcoral;
+                text-transform: uppercase;
+                padding: 5px;
+                font-weight: bold;
+                margin: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 100%;
+                border: 1px solid red;
+            }
+            li.active {
+                animation: pawnPulse .3s ease-in-out infinite;
+            }
+
+        }
+    }
+
+    .Blue {
+        background-color: royalblue !important;
+    }
+
+    .Red {
+        background-color: crimson !important;
+    }
+
+    .Green {
+        background-color: green !important;
+    }
+    
+    .Brown {
+        background-color: saddlebrown !important;
+    }
+
+    .Purple {
+        background-color: rebeccapurple !important;
+    }
+
+    .Yellow {
+        background-color: yellow !important;
+    }
+    .Pink {
+        background-color: hotpink !important;
+    }
+    .Orange {
+        background-color: orange !important;
+    }
+    .special-building {
+        background-color: black !important;
+    }
+
+}
+
+.corner {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.left {
+    display: flex;
+    flex-direction: row-reverse !important;
+    div:not(.field-text) {
+        width: 40px;
+        height: 100%;
+        border-bottom: 0;
+        border-left: 2px solid black;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+    .field-text {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+}
+
+.right {
+    display: flex;
+    flex-direction: row !important;
+    div:not(.field-text) {
+        width: 40px;
+        height: 100%;
+        border-bottom: 0;
+        border-right: 2px solid black;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+    .field-text {
+        flex-direction: column-reverse;
+        writing-mode: vertical-lr;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+    }
+}

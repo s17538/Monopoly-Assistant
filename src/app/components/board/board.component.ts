@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MonopolyService } from 'src/app/services/monopoly.service';
 
 @Component({
   selector: 'app-board',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
 
-  constructor() { }
+  @Input() boardDirection: number;
+  rotationClass: string;
+
+  constructor(private ms: MonopolyService) {
+    this.rotationClass = 'board-rotate-0';
+  }
+
+  playersOnField(i: number){
+    let arr = [];
+    this.ms.players.forEach(player => {
+      if(player.location === i){
+        arr.push(player);
+      }
+    })
+    return arr;
+  }
 
   ngOnInit() {
+  }
+
+  ngDoCheck(){
+    this.rotationClass = 'board-rotate-'+this.boardDirection;
   }
 
 }

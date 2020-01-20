@@ -1,1 +1,16 @@
-<p>field works!</p>
+<div class="field" [ngClass]="field.id > 10 && field.id < 20 ? 'left': field.id > 30 ? 'right':''"> 
+    <div [ngClass]="field.colour">
+        <h4 *ngIf="field.owner != null">[{{ field.owner == null ? '' : field.owner.name }}] </h4>
+    </div>
+    <div class="field-text">
+        <b>{{ field.name }}</b>
+        <ul>
+            <li *ngFor="let player of players" [ngClass]="player.id === ms.activePlayer ? 'active' : ''" [id]="player.name">
+                {{ player.name[0] }}
+            </li>
+        </ul>
+        <p *ngIf="!field.colour.includes('special') || (field.colour.includes('building') || field.colour.includes('powerplant'))">{{ field.owner == null ? 'Koszt: ' + field.cost : 'Podatek: '+field.tax }}$</p>
+        <p *ngIf="field.colour.includes('special') && !field.colour.includes('building') && !field.colour.includes('powerplant')"></p>
+    </div>
+    
+</div>

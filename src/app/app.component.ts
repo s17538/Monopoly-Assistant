@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'monopoly';
+
+  boardDirection = 0;
+  
+  rotateBoard(){
+    this.boardDirection += 90;
+    if(this.boardDirection === 450) this.boardDirection = 90;
+    console.log(this.boardDirection);
+  }
+  
+
+
 }

@@ -1,1 +1,15 @@
-<p>board works!</p>
+<div [ngClass]="rotationClass">
+
+
+    <app-field *ngFor="let field of ms.fields; let i = index" [field]="field" [players]="playersOnField(i)"></app-field>
+
+    <div class="div41">
+        <h1>
+            Monopoly Assistant
+        </h1>
+    </div>
+
+
+    <app-chance-card [card]="this.ms.activeCard"></app-chance-card>
+
+</div>

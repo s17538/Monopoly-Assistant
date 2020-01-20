@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import Player from '../models/Player';
 import Field from '../models/Field';
 import Chance from '../models/Chance';
-
+import { LogService } from './log.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,12 +16,16 @@ export class MonopolyService {
     dice2: number;
     roundsLeft: number;
     cards: Array<Chance>;
+    activeCard: Chance | null;
 
-    constructor() {
+    constructor(private ls:LogService) {
         this.players = [
-            new Player(0, "Jeremi", 0, 500, 0,"red"),
-            new Player(1, "Filip", 0, 500, 0,"blue"),
-            new Player(2, "Weronika", 0, 500, 0,"green")
+            new Player(0, "Jeremi", 0, 500, 0, "red"),
+            new Player(1, "Filip", 0, 500, 0, "blue"),
+            new Player(2, "Weronika", 0, 500, 0, "green"),
+            new Player(3, "Bartas", 0, 500, 0, "red"),
+            new Player(4, "Nikola", 0, 500, 0, "blue"),
+            new Player(5, "Magielek", 0, 500, 0, "green"),
         ];
         this.fields = [
 
@@ -43,7 +47,7 @@ export class MonopolyService {
             new Field(13, "Audi", "Pink", 140, 35, null),
             new Field(14, "BMW", "Pink", 160, 40, null),
 
-            new Field(15, "Sala konferencyjna", "special-building", 200, 0, null),
+            new Field(15, "Księgowość", "special-building", 200, 0, null),
             new Field(16, "CD Projekt RED", "Orange", 180, 45, null),
             new Field(17, "Community chest", "special-chance", 0, 0, null),
             new Field(18, "Blizzard", "Orange", 180, 100, null),
@@ -74,43 +78,44 @@ export class MonopolyService {
             new Field(39, "Samsung", "Blue", 400, 100, null)
         ];
         this.cards = [
-            new Chance(0,"Urodziny","To Twój dzień! Otrzymujesz 20$ od każdego gracza."),
-            new Chance(1,"Pomyłka","Bank pomylił się na Twoją korzyść, otrzymujesz 200$."),
-            new Chance(2,"Spadek","Otrzymujesz w spadku 100$"),
-            new Chance(3,"iDay","Wydarzenie w iSpocie, udaj się na pole Apple."),
-            new Chance(4,"Pechowy dzień","Zobaczyłeś mema ze swoją osobą, udajesz się do więzienia w celu ukrycia."),
-            new Chance(5,"Reklamacja","Kupiłeś zepsutą lodówkę Samsunga, udajesz się na pole Samsung w celu reklamacji."),
-            new Chance(6,"Gorączka piątkowej nocy","Strasznie się upiłeś, a w Twoim portfelu brakuje 150$. Pamiętasz na co je wydałeś?"),
-            new Chance(7,"Zwolnienie","Wyrzucili Cię z pracy i zaczynasz od nowa.Udaj się na pole startu"),
-            new Chance(8,"Głód","Burczy w brzuchu i udajesz się do McDonalda."),
-            new Chance(9,"Paliwko","Podczas podróży zabrakło Ci paliwa, udaj się na stacje BP i zatankuj za 150$.")
+            new Chance(0, "Urodziny", "To Twój dzień! Otrzymujesz 20$ od każdego gracza.", true),
+            new Chance(1, "Pomyłka", "Bank pomylił się na Twoją korzyść, otrzymujesz 200$.", true),
+            new Chance(2, "Spadek", "Otrzymujesz w spadku 100$", true),
+            new Chance(3, "iDay", "Wydarzenie w iSpocie, udaj się na pole Apple.", true),
+            new Chance(4, "Pechowy dzień", "Zobaczyłeś mema ze swoją osobą, udajesz się do więzienia w celu ukrycia.", false),
+            new Chance(5, "Reklamacja", "Kupiłeś zepsutą lodówkę Samsunga, udajesz się na pole Samsung w celu reklamacji.", false),
+            new Chance(6, "Gorączka piątkowej nocy", "Strasznie się upiłeś, a w Twoim portfelu brakuje 150$. Pamiętasz na co je wydałeś?", false),
+            new Chance(7, "Zwolnienie", "Wyrzucili Cię z pracy i zaczynasz od nowa.Udaj się na pole startu", false),
+            new Chance(8, "Głód", "Burczy w brzuchu i udajesz się do McDonalda.", false),
+            new Chance(9, "Paliwko", "Podczas podróży zabrakło Ci paliwa, udaj się na stacje BP i zatankuj za 150$.", false)
 
         ];
         this.activePlayer = 0;
         this.dice1 = 0;
         this.dice2 = 0;
-        this.roundsLeft = 100;
+        this.roundsLeft = 30;
+        this.activeCard = null;
     }
 
     movePlayer() {
 
-        if (this.active.roundsInJail != 0) {
+        if (this.active.roundsInJail == 0) {
             this.dice1 = Math.floor((Math.random() * 6) + 1);
             this.dice2 = Math.floor((Math.random() * 6) + 1);
 
-            console.log("Tura gracza " + this.active.name + "(" + this.active.money + "$)");
+            this.ls.logs.push("Tura gracza " + this.active.name + " (" + "Posiada: " + this.active.money + "$)");
             let x = this.active.location;
 
             this.active.location += this.dice1 + this.dice2;
 
             if (this.active.location >= this.fields.length) {
-                this.active.money += 400;
+                this.active.money += 100;
                 this.active.location = this.active.location - this.fields.length;
             }
 
-            console.log("Pozycja (" + this.dice1 + "," + this.dice2 + "): " + x + "->" + this.active.location);
+            this.ls.logs.push(this.active.name + " wylosował kości o wartościach " + this.dice1 + " oraz " + this.dice2 + " , i przemieszcza się na pole " + this.fields[this.active.location].name);
             let y = this.fields[this.active.location].owner == null ? 'nikogo' : this.fields[this.active.location].owner.name;
-            console.log(this.fields[this.active.location].name + " należy do " + y);
+            this.ls.logs.push(this.fields[this.active.location].name + " jest w posiadaniu " + y);
 
             this.executeField();
 
@@ -144,7 +149,7 @@ export class MonopolyService {
                 this.buyField();
             }
             else {
-                console.log(this.active.name + " płaci " + this.fields[this.active.location].tax + " dla " + this.fields[this.active.location].owner.name);
+                this.ls.logs.push(this.active.name + " płaci " + this.fields[this.active.location].tax + " $ " + " dla " + this.fields[this.active.location].owner.name);
                 this.active.money -= this.fields[this.active.location].tax;
                 this.fields[this.active.location].owner.money += this.fields[this.active.location].tax;
             }
@@ -158,7 +163,7 @@ export class MonopolyService {
                 }
                 else {
 
-                    console.log(this.active.name + " płaci " + this.fields[this.active.location].tax + " dla " + this.fields[this.active.location].owner.name);
+                    this.ls.logs.push(this.active.name + " płaci " + this.fields[this.active.location].tax + " $ " + " dla " + this.fields[this.active.location].owner.name);
                     let taxSum = 0;
                     let activeFieldOwner = this.fields[this.active.location].owner;
 
@@ -185,7 +190,7 @@ export class MonopolyService {
                 }
                 else {
 
-                    console.log(this.active.name + " płaci " + this.fields[this.active.location].tax + " dla " + this.fields[this.active.location].owner.name);
+                    this.ls.logs.push(this.active.name + " płaci " + this.fields[this.active.location].tax + " $ " + " dla " + this.fields[this.active.location].owner.name);
 
                     let multiplier = 1;
                     let activeFieldOwner = this.fields[this.active.location].owner;
@@ -221,7 +226,7 @@ export class MonopolyService {
     }
 
     buyField() {
-        let decision = confirm("Czy chcesz kupić tą pozycję za " + this.fields[this.active.location].cost + "?");
+        let decision = confirm("[" + this.active.name + "]"+ " " +"Czy chcesz kupić "+ this.fields[this.active.location].name + " za " + this.fields[this.active.location].cost + " $ " + "?");
         if (decision) {
             this.fields[this.active.location].owner = this.active;
         }
@@ -232,52 +237,55 @@ export class MonopolyService {
         this.active.roundsInJail = 2;
     }
 
-    drawChance(){
+    drawChance() {
         let randomChance = Math.floor((Math.random() * this.cards.length));
-        if(randomChance === 0){
+        this.ls.logs.push('Karta szansy!');
+        this.ls.logs.push(this.cards[randomChance].title);
+        this.ls.logs.push(this.cards[randomChance].description);
+        if (randomChance === 0) {
             this.players.forEach(player => {
                 player.money -= 20;
                 this.active.money += 20;
             })
         }
 
-        else if (randomChance === 1){
+        else if (randomChance === 1) {
             this.active.money += 200;
         }
 
-        else if (randomChance === 2){
+        else if (randomChance === 2) {
             this.active.money += 100;
         }
-        
-        else if (randomChance === 3){
+
+        else if (randomChance === 3) {
             this.active.location = 37;
         }
-        
-        else if (randomChance === 4){
+
+        else if (randomChance === 4) {
             this.imprison();
         }
-        
-        else if (randomChance === 5){
+
+        else if (randomChance === 5) {
             this.active.location = 39;
         }
-        
-        else if (randomChance === 6){
+
+        else if (randomChance === 6) {
             this.active.money -= 150;
         }
-        
-        else if (randomChance === 7){
+
+        else if (randomChance === 7) {
             this.active.location = 0;
         }
-        
-        else if (randomChance === 8){
+
+        else if (randomChance === 8) {
             this.active.location = 1;
         }
-        
-        else if (randomChance === 9){
+
+        else if (randomChance === 9) {
             this.active.location = 31;
             this.active.money -= 100;
         }
-
+        this.activeCard = this.cards[randomChance];
     }
 
     get active() {
