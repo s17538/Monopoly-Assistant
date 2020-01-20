@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoardComponent } from './components/board/board.component';
@@ -14,6 +13,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ChanceCardComponent } from './components/chance-card/chance-card.component';
 import { VictoryScreenComponent } from './components/victory-screen/victory-screen.component';
 import { LogWindowComponent } from './components/log-window/log-window.component';
+import { GameSetupComponent } from './components/game-setup/game-setup.component';
+import { GameViewComponent } from './components/game-view/game-view.component';
 
 
 @NgModule({
@@ -27,7 +28,9 @@ import { LogWindowComponent } from './components/log-window/log-window.component
     PlayersItemComponent,
     ChanceCardComponent,
     VictoryScreenComponent,
-    LogWindowComponent
+    LogWindowComponent,
+    GameSetupComponent,
+    GameViewComponent
   ],
   imports: [
     BrowserModule,

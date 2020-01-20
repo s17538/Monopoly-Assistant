@@ -16,9 +16,10 @@
         </ul>
     </div>
     
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-space-around align-items-center">
         <button class="btn btn-outline-primary btn-lg" (click)="rotateBoard()">Obrót planszy</button>
         <button class="btn btn-outline-danger btn-lg"  (click)="movePlayer()">Rzut kostką</button>
+        <button [routerLink]="['/']" class="btn btn-outline-secondary btn-lg">Nowa gra</button>
     </div>
     
 </div>
