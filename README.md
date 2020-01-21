@@ -21,13 +21,13 @@
     - parking - pole, które nie zawiera żadnych interakcji.
 - gra kończy się wraz z upływem określonej ilości rund (im więcej graczy tym dłuższa rozgrywka), po zakończeniu rozgrywki zostaje wyświetlony tzw. leaderboard czyli tabela wyników.
 ## Funkcjonalności w grze:
+* początkowy widok, gdzie ustalamy imię, kolor pionków graczy oraz ich ilość
 * możliwość obrotu planszy o 90° dedykowanym przyciskiem
 * implementacja planszy
 * rozgrywka prowadzona w formacie hot seat
 * możliwość deklaracji ilości graczy oraz kolorów ich pionków przed rozpoczęciem rozgrywki
 * automatyczne pobieranie podatku od gracza, który stanie na polu innego gracza
 * logika odpowiadająca za ruch graczy po planszy oraz możliwość wykupienia danych pól
-* podsumowanie gry po ukończeniu rozgrywki tzw. leaderboard
 * okno z logami/wiadomościami z gry oraz rankingiem graczy
 
 
