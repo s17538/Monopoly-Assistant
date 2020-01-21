@@ -19,7 +19,7 @@
     - podatek - gracz stając na tym polu oddaje określoną kwotę do urzędu skarbowego (tzn. traci pieniądze)
     - budynek specjalny - plansza zawiera cztery pola tego rodzaju, im więcej takich pól dany gracz posiada, tym więcej podatku oponenci płacą posiadaczowi stając na nim.
     - parking - pole, które nie zawiera żadnych interakcji.
-- gra kończy się wraz z upływem określonej ilości rund (im więcej graczy tym dłuższa rozgrywka), po zakończeniu rozgrywki zostaje wyświetlony tzw. leaderboard czyli tabela wyników.
+- gra kończy się wraz z upływem określonej ilości rund (im więcej graczy tym dłuższa rozgrywka)
 ## Funkcjonalności w grze:
 * początkowy widok, gdzie ustalamy imię, kolor pionków graczy oraz ich ilość
 * możliwość obrotu planszy o 90° dedykowanym przyciskiem
