@@ -5,7 +5,7 @@
     <div class="field-text">
         <b>{{ field.name }}</b>
         <ul>
-            <li *ngFor="let player of players" [ngClass]="player.id === ms.activePlayer ? 'active' : ''" [id]="player.name">
+            <li *ngFor="let player of players" [ngClass]="player.id === ms.activePlayer ? 'active' : ''" [id]="player.name" [ngStyle]="{'background': player.pawnColour}">
                 {{ player.name[0] }}
             </li>
         </ul>

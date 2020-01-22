@@ -17,16 +17,10 @@ export class MonopolyService {
     roundsLeft: number;
     cards: Array<Chance>;
     activeCard: Chance | null;
+    activePlayerName: string;
 
-    constructor(private ls:LogService) {
-        this.players = [
-            new Player(0, "Jeremi", 0, 500, 0, "red"),
-            new Player(1, "Filip", 0, 500, 0, "blue"),
-            new Player(2, "Weronika", 0, 500, 0, "green"),
-            new Player(3, "Bartas", 0, 500, 0, "red"),
-            new Player(4, "Nikola", 0, 500, 0, "blue"),
-            new Player(5, "Magielek", 0, 500, 0, "green"),
-        ];
+    constructor(private ls: LogService) {
+        this.players = [];
         this.fields = [
 
             new Field(0, "Start", "special-start", 0, 0, null),
@@ -162,26 +156,33 @@ export class MonopolyService {
                     this.buyField();
                 }
                 else {
-
-                    this.ls.logs.push(this.active.name + " płaci " + this.fields[this.active.location].tax + " $ " + " dla " + this.fields[this.active.location].owner.name);
                     let taxSum = 0;
-                    let activeFieldOwner = this.fields[this.active.location].owner;
+                    let activeFieldOwner = this.fields[this.active.location].owner.id;
+                    if (this.fields[5].owner != null) {
+                        if (activeFieldOwner === this.fields[5].owner.id) {
+                            taxSum += 50;
+                        }
+                    }
+                    if (this.fields[15].owner != null) {
+                        if (activeFieldOwner === this.fields[15].owner.id) {
+                            taxSum += 50;
+                        }
+                    }
+                    if (this.fields[25].owner != null) {
+                        if (activeFieldOwner === this.fields[25].owner.id) {
+                            taxSum += 50;
+                        }
+                    }
+                    if (this.fields[35].owner != null) {
+                        if (activeFieldOwner === this.fields[35].owner.id) {
+                            taxSum += 50;
+                        }
+                    }
 
-                    if (activeFieldOwner === this.fields[5].owner) {
-                        taxSum += 50;
-                    }
-                    if (activeFieldOwner === this.fields[15].owner) {
-                        taxSum += 50;
-                    }
-                    if (activeFieldOwner === this.fields[25].owner) {
-                        taxSum += 50;
-                    }
-                    if (activeFieldOwner === this.fields[35].owner) {
-                        taxSum += 50;
-                    }
 
                     this.active.money -= taxSum;
-                    this.fields[this.active.location].owner.money += this.fields[this.active.location].tax;
+                    this.fields[this.active.location].owner.money += taxSum;
+                    this.ls.logs.push(this.active.name + " płaci " + taxSum + " $ " + " dla " + this.fields[this.active.location].owner.name);
                 }
             }
             else if (colour.includes('powerplant')) {
@@ -226,7 +227,7 @@ export class MonopolyService {
     }
 
     buyField() {
-        let decision = confirm("[" + this.active.name + "]"+ " " +"Czy chcesz kupić "+ this.fields[this.active.location].name + " za " + this.fields[this.active.location].cost + " $ " + "?");
+        let decision = confirm("[" + this.active.name + "]" + " " + "Czy chcesz kupić " + this.fields[this.active.location].name + " za " + this.fields[this.active.location].cost + " $ " + "?");
         if (decision) {
             this.fields[this.active.location].owner = this.active;
         }
@@ -283,9 +284,10 @@ export class MonopolyService {
 
         else if (randomChance === 9) {
             this.active.location = 31;
-            this.active.money -= 100;
+            this.active.money -= 150;
         }
         this.activeCard = this.cards[randomChance];
+        this.activePlayerName = this.active.name;
     }
 
     get active() {

@@ -11,7 +11,6 @@ import { PlayersListComponent } from './components/players-list/players-list.com
 import { PlayersItemComponent } from './components/players-item/players-item.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ChanceCardComponent } from './components/chance-card/chance-card.component';
-import { VictoryScreenComponent } from './components/victory-screen/victory-screen.component';
 import { LogWindowComponent } from './components/log-window/log-window.component';
 import { GameSetupComponent } from './components/game-setup/game-setup.component';
 import { GameViewComponent } from './components/game-view/game-view.component';
@@ -27,7 +26,6 @@ import { GameViewComponent } from './components/game-view/game-view.component';
     PlayersListComponent,
     PlayersItemComponent,
     ChanceCardComponent,
-    VictoryScreenComponent,
     LogWindowComponent,
     GameSetupComponent,
     GameViewComponent

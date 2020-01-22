@@ -1,6 +1,6 @@
 <div class="card mb-3" [ngClass]="card.ifPositive ? 'border-success' : 'border-danger'" style="max-width: 18rem;" *ngIf="card !== null">
-    <div class="card-header d-flex justify-content-between">Karta szansy #{{card.id}}
-    <button (click)="closeWindow" class="btn btn-sm " [ngClass]="card.ifPositive ? 'btn-outline-success' : 'btn-outline-danger'">X</button>
+    <div class="card-header d-flex justify-content-between">Karta szansy #{{card.id}} [{{this.ms.activePlayerName}}]
+    <button (click)="closeWindow()" class="btn btn-sm " [ngClass]="card.ifPositive ? 'btn-outline-success' : 'btn-outline-danger'">X</button>
     </div>
     <div class="card-body" [ngClass]="card.ifPositive ? 'text-success' : 'text-danger'">
       <h5 class="card-title">{{card.title}}</h5>

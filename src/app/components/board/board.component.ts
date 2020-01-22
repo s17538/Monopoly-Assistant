@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MonopolyService } from 'src/app/services/monopoly.service';
+import Player from 'src/app/models/Player';
 
 @Component({
   selector: 'app-board',
@@ -9,6 +10,7 @@ import { MonopolyService } from 'src/app/services/monopoly.service';
 export class BoardComponent implements OnInit {
 
   @Input() boardDirection: number;
+  player:Player;
   rotationClass: string;
 
   constructor(private ms: MonopolyService) {

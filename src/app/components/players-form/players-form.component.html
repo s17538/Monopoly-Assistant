@@ -1,9 +1,22 @@
 <form [formGroup]="player" class="form-group" (submit)="addPlayer()">
+    <div class="div41 align-center">
+        <h1>
+            Monopoly Assistant
+        </h1>
+    </div>
     <label>
-        imie<input formControlName="name" class="form-control" />
+        <br>
+        <span
+            *ngIf="player.controls.name.errors !== null && player.controls.name.errors.required != null || player.controls.name.errors !== null && player.controls.name.errors.CapitalValidator != null">
+            Uzupełnij imieniem z duża literą
+        </span>
+        <input formControlName="name" class="form-control" placeholder="Twoje imię" />
     </label>
+    <br>
     <label>
-        Kolor pionka<input type="color" formControlName="pawnColour" class="form-control" />
+        Wybierz kolor pionka<input type="color" formControlName="pawnColour" class="form-control" />
     </label>
-    <input type="submit"/>
+    <br>
+    <input type="submit" value="Dodaj gracza" class="btn btn-outline-dark" [disabled]="!player.valid" />
+
 </form>
