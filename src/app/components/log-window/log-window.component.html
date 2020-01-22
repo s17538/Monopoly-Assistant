@@ -1,5 +1,4 @@
 <div class="d-flex flex-column log-window card quicksand">
-
     <div class="d-flex flex-column card">
         <p class="card-header">Tabela wyników:</p>
         <ol class="card-text">
@@ -8,18 +7,17 @@
     </div>
 
     <div class="d-flex flex-column">
-    <p class="card-header">Wydarzenia z gry - zostało {{ ms.roundsLeft }} rund:</p>
+        <p class="card-header">Wydarzenia z gry - zostało {{ ms.roundsLeft }} rund:</p>
         <ul class="">
             <li *ngFor="let log of ls.logs">
-                {{log}}
+                {{ log }}
             </li>
         </ul>
     </div>
-    
+
     <div class="d-flex justify-content-space-around align-items-center flex-column px-5">
         <button class="btn btn-outline-primary btn-lg my-1 btn-block" (click)="rotateBoard()">Obrót planszy</button>
-        <button class="btn btn-outline-danger btn-lg my-1 btn-block"  (click)="movePlayer()">Rzut kostką</button>
-        <button [routerLink]="['/']" class="btn btn-outline-secondary btn-lg my-1 btn-block" >Nowa gra</button>
+        <button class="btn btn-outline-danger btn-lg my-1 btn-block" (click)="movePlayer()">Rzut kostką</button>
+        <button [routerLink]="['/']" class="btn btn-outline-secondary btn-lg my-1 btn-block">Nowa gra</button>
     </div>
-    
 </div>

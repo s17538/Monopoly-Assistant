@@ -7,13 +7,13 @@ export default class Field {
     cost: number;
     tax: number;
     owner: Player | null;
-    
-    constructor(id: number,name: string,colour: string,cost: number,tax: number,owner:Player | null){
-        this.id=id;
-        this.name=name;
-        this.colour=colour;
-        this.cost=cost;
-        this.tax=tax;
+
+    constructor(id: number, name: string, colour: string, cost: number, tax: number, owner: Player | null) {
+        this.id = id;
+        this.name = name;
+        this.colour = colour;
+        this.cost = cost;
+        this.tax = tax;
         this.owner = owner;
     }
 }

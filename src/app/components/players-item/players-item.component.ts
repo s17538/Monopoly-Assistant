@@ -2,23 +2,20 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import Player from 'src/app/models/Player';
 
 @Component({
-  selector: 'app-players-item',
-  templateUrl: './players-item.component.html',
-  styleUrls: ['./players-item.component.scss']
+    selector: 'app-players-item',
+    templateUrl: './players-item.component.html',
+    styleUrls: ['./players-item.component.scss'],
 })
 export class PlayersItemComponent implements OnInit {
+    @Input() player: Player;
+    @Input() nr: number;
+    @Output() playerRemoved = new EventEmitter<number>();
 
-  @Input() player: Player;
-  @Input() nr: number;
-  @Output() playerRemoved = new EventEmitter<number>();
+    constructor() {}
 
-  constructor() { }
+    ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  removePlayer(){
-    this.playerRemoved.emit(this.nr);
-  }
-
+    removePlayer() {
+        this.playerRemoved.emit(this.nr);
+    }
 }

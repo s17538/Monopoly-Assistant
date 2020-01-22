@@ -3,10 +3,10 @@ export default class Player {
     name: string;
     location: number;
     money: number;
-    roundsInJail:number;
-    pawnColour:string;
+    roundsInJail: number;
+    pawnColour: string;
 
-    constructor(id: number, name: string, location: number, money: number,roundsInJail:number,pawnColour:string) {
+    constructor(id: number, name: string, location: number, money: number, roundsInJail: number, pawnColour: string) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -14,4 +14,4 @@ export default class Player {
         this.roundsInJail = roundsInJail;
         this.pawnColour = pawnColour;
     }
-} 
+}

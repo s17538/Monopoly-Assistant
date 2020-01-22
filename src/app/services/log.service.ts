@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class LogService {
+    logs: string[] = [];
 
-logs: string[] = [];
-  
-  constructor() { }
-
-
-
+    constructor() {}
 }
