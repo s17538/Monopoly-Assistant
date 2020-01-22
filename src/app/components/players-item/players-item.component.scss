@@ -1,5 +1,10 @@
 .space{
-    justify-content: space-around;
+    justify-content: space-between;
     display:flex;
-    margin:3px;
+    margin:5px;
+}
+
+.bg{
+    width:110px;
+    height: 55px;
 }
